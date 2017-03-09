@@ -18,6 +18,10 @@ if [[ $DATADOG_HISTOGRAM_PERCENTILES ]]; then
   sed -i -e "s/^.*histogram_percentiles:.*$/histogram_percentiles: ${DATADOG_HISTOGRAM_PERCENTILES}/" /app/.apt/opt/datadog-agent/agent/datadog.conf
 fi
 
+if [[ $DATADOG_APM_ENABLED]]; then
+  sed -i -e "s/^.*apm_enabled:.*$/apm_enabled: ${DATADOG_APM_ENABLED}/" /app/.apt/opt/datadog-agent/agent/datadog.conf
+fi
+
 (
   if [[ $DISABLE_DATADOG_AGENT ]]; then
     echo "DISABLE_DATADOG_AGENT environment variable is set, not starting the agent."
